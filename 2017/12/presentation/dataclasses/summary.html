@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Summary &mdash; SF Holiday Party December 2017 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="SF Holiday Party December 2017 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Recipes for Immediate Use" href="recipes.html"/>
+        <link rel="prev" title="Dataclasses" href="ds.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SF Holiday Party December 2017
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Problem to be Solved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bun.html">Bunch and SimpleNamespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nt.html">Named Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rec.html">Record (mutable named tuple)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds.html">Dataclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds.html#examples">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Summary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pretty-table">Pretty Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gains-and-losses">Gains and Losses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recipes.html">Recipes for Immediate Use</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SF Holiday Party December 2017</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Summary</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>Let&#8217;s see, how do I feel about all this?</p>
+<p><strong>I really like the new dataclasses!</strong></p>
+<p>If you need mutable named tuples today, try George Sakkis&#8217;s
+<em>Record</em> class or use the attached dataclass code that runs
+fine on Python3.6 (but not prior).</p>
+<p>&#8216;nuff said.</p>
+<div class="section" id="pretty-table">
+<h2>Pretty Table<a class="headerlink" href="#pretty-table" title="Permalink to this headline">¶</a></h2>
+<p>Summary of your code generation options:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="22%" />
+<col width="16%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code Generators</th>
+<th class="head">Store</th>
+<th class="head">Space</th>
+<th class="head">Mutable</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Namedtuple</td>
+<td>tuple</td>
+<td>72</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>Record</td>
+<td>instslots</td>
+<td>64</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Dataclasses</td>
+<td>instdict</td>
+<td>296</td>
+<td>Optional</td>
+</tr>
+<tr class="row-odd"><td>Dataclasses w/slots</td>
+<td>instslots</td>
+<td>64</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gains-and-losses">
+<h2>Gains and Losses<a class="headerlink" href="#gains-and-losses" title="Permalink to this headline">¶</a></h2>
+<p>Some things as named tuples (in typing module):</p>
+<ul class="simple">
+<li>attribute access</li>
+<li>introspectable fields list</li>
+<li>defaults values</li>
+<li>variable annotations</li>
+<li>conflict between slots and default values</li>
+</ul>
+<p>Some nice improvements:</p>
+<ul class="simple">
+<li>slotted version sightly more compact by 1 field</li>
+<li>faster attribute access</li>
+<li>optional mutability</li>
+<li>more specific equality tests</li>
+<li>controllable init, hash, rich compares, and repr</li>
+<li>subclassable composition</li>
+</ul>
+<p>Some things aren&#8217;t as nice:</p>
+<ul class="simple">
+<li>slower creation time</li>
+<li>not substitutable for tuples or unpackable</li>
+<li>not great for subclassing immutable types</li>
+<li>much higher complexity and learning curve (esp. with fields() function and build flags)</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recipes.html" class="btn btn-neutral float-right" title="Recipes for Immediate Use" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ds.html" class="btn btn-neutral" title="Dataclasses" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Raymond Hettinger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

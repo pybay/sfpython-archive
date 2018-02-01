@@ -1,0 +1,34 @@
+Raymond Hettinger Holiday Party Talk
+====================================
+
+
+My Mission
+    Train thousands of Python Programmers
+
+Contact Info
+    raymond dot hettinger at gmail dot com
+
+Company
+    Mutable Minds, Inc.
+
+Training videos
+    Free to user's of Safari Online:
+    "Modern Python: Big Ideas, Little Code"
+
+Twitter Account
+    @raymondh
+
+
+Class Generators: dataclasses and namedtuples
+---------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   overview.rst
+   bun.rst
+   nt.rst
+   rec.rst
+   ds.rst
+   summary.rst
+   recipes.rst

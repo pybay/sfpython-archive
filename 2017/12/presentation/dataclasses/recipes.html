@@ -1,0 +1,1322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Recipes for Immediate Use &mdash; SF Holiday Party December 2017 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="SF Holiday Party December 2017 1.0 documentation" href="index.html"/>
+        <link rel="prev" title="Summary" href="summary.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SF Holiday Party December 2017
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Problem to be Solved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bun.html">Bunch and SimpleNamespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nt.html">Named Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rec.html">Record (mutable named tuple)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds.html">Dataclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ds.html#examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recipes for Immediate Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bunch">Bunch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#namedtuple">Namedtuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#record">Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataclasses">Dataclasses</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SF Holiday Party December 2017</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Recipes for Immediate Use</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="recipes-for-immediate-use">
+<h1>Recipes for Immediate Use<a class="headerlink" href="#recipes-for-immediate-use" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bunch">
+<h2>Bunch<a class="headerlink" href="#bunch" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Credit: Alex Martelli, Doug Hudgeon (Python Cookbook 2nd Edition)</span>
+<span class="c1"># https://www.safaribooksonline.com/library/view/python-cookbook-2nd/0596007973/ch04s19.html</span>
+
+<span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">29</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">datum</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">squared</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span>
+
+    <span class="n">dark_orange</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">hue</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">lightness</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="namedtuple">
+<h2>Namedtuple<a class="headerlink" href="#namedtuple" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Extract from Python3.7 source for Lib/collections/__init__.py</span>
+
+<span class="kn">from</span> <span class="nn">keyword</span> <span class="k">import</span> <span class="n">iskeyword</span> <span class="k">as</span> <span class="n">_iskeyword</span>
+<span class="kn">import</span> <span class="nn">sys</span> <span class="k">as</span> <span class="nn">_sys</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="k">import</span> <span class="n">itemgetter</span> <span class="k">as</span> <span class="n">_itemgetter</span>
+
+<span class="n">_nt_itemgetters</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">namedtuple</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rename</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a new subclass of tuple with named fields.</span>
+
+<span class="sd">    &gt;&gt;&gt; Point = namedtuple(&#39;Point&#39;, [&#39;x&#39;, &#39;y&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; Point.__doc__                   # docstring for the new class</span>
+<span class="sd">    &#39;Point(x, y)&#39;</span>
+<span class="sd">    &gt;&gt;&gt; p = Point(11, y=22)             # instantiate with positional args or keywords</span>
+<span class="sd">    &gt;&gt;&gt; p[0] + p[1]                     # indexable like a plain tuple</span>
+<span class="sd">    33</span>
+<span class="sd">    &gt;&gt;&gt; x, y = p                        # unpack like a regular tuple</span>
+<span class="sd">    &gt;&gt;&gt; x, y</span>
+<span class="sd">    (11, 22)</span>
+<span class="sd">    &gt;&gt;&gt; p.x + p.y                       # fields also accessible by name</span>
+<span class="sd">    33</span>
+<span class="sd">    &gt;&gt;&gt; d = p._asdict()                 # convert to a dictionary</span>
+<span class="sd">    &gt;&gt;&gt; d[&#39;x&#39;]</span>
+<span class="sd">    11</span>
+<span class="sd">    &gt;&gt;&gt; Point(**d)                      # convert from a dictionary</span>
+<span class="sd">    Point(x=11, y=22)</span>
+<span class="sd">    &gt;&gt;&gt; p._replace(x=100)               # _replace() is like str.replace() but targets named fields</span>
+<span class="sd">    Point(x=100, y=22)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Validate the field names.  At the user&#39;s option, either generate an error</span>
+    <span class="c1"># message or automatically replace the field name with a valid name.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">field_names</span> <span class="o">=</span> <span class="n">field_names</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">field_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">field_names</span><span class="p">))</span>
+    <span class="n">typename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">typename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rename</span><span class="p">:</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">field_names</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isidentifier</span><span class="p">()</span>
+                <span class="ow">or</span> <span class="n">_iskeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+                <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">):</span>
+                <span class="n">field_names</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;_</span><span class="si">{index}</span><span class="s1">&#39;</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">typename</span><span class="p">]</span> <span class="o">+</span> <span class="n">field_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Type names and field names must be strings&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isidentifier</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names must be valid &#39;</span>
+                             <span class="n">f</span><span class="s1">&#39;identifiers: </span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_iskeyword</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names cannot be a &#39;</span>
+                             <span class="n">f</span><span class="s1">&#39;keyword: </span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rename</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Field names cannot start with an underscore: &#39;</span>
+                             <span class="n">f</span><span class="s1">&#39;</span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Encountered duplicate field name: </span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Variables used in the methods and docstrings</span>
+    <span class="n">field_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">_sys</span><span class="o">.</span><span class="n">intern</span><span class="p">,</span> <span class="n">field_names</span><span class="p">))</span>
+    <span class="n">num_fields</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
+    <span class="n">arg_list</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">repr_fmt</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">=</span><span class="si">%r</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+    <span class="n">tuple_new</span> <span class="o">=</span> <span class="nb">tuple</span><span class="o">.</span><span class="n">__new__</span>
+    <span class="n">_len</span> <span class="o">=</span> <span class="nb">len</span>
+
+    <span class="c1"># Create all the named tuple methods to be added to the class namespace</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;def __new__(_cls, </span><span class="si">{arg_list}</span><span class="s1">): return _tuple_new(_cls, (</span><span class="si">{arg_list}</span><span class="s1">))&#39;</span>
+    <span class="n">namespace</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_tuple_new&#39;</span><span class="p">:</span> <span class="n">tuple_new</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s1">&#39;namedtuple_</span><span class="si">{typename}</span><span class="s1">&#39;</span><span class="p">}</span>
+    <span class="c1"># Note: exec() has the side-effect of interning the typename and field names</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+    <span class="n">__new__</span> <span class="o">=</span> <span class="n">namespace</span><span class="p">[</span><span class="s1">&#39;__new__&#39;</span><span class="p">]</span>
+    <span class="n">__new__</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;Create new instance of </span><span class="si">{typename}</span><span class="s1">(</span><span class="si">{arg_list}</span><span class="s1">)&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_make</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tuple_new</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">iterable</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">!=</span> <span class="n">num_fields</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Expected </span><span class="si">{num_fields}</span><span class="s1"> arguments, got {len(result)}&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="n">_make</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make a new </span><span class="si">{typename}</span><span class="s1"> object from a sequence &#39;</span>
+                              <span class="s1">&#39;or iterable&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_replace</span><span class="p">(</span><span class="n">_self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">_self</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="n">_self</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">kwds</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Got unexpected field names: {list(kwds)!r}&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="n">_replace</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;Return a new </span><span class="si">{typename}</span><span class="s1"> object replacing specified &#39;</span>
+                        <span class="s1">&#39;fields with new values&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Return a nicely formatted representation string&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="n">repr_fmt</span> <span class="o">%</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_asdict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Return a new OrderedDict which maps field names to their values.&#39;</span>
+        <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s1">&#39;Return self as a plain tuple.  Used by copy and pickle.&#39;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="c1"># Modify function metadata to help with introspection and debugging</span>
+
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="n">__new__</span><span class="p">,</span> <span class="n">_make</span><span class="o">.</span><span class="n">__func__</span><span class="p">,</span> <span class="n">_replace</span><span class="p">,</span>
+                   <span class="n">__repr__</span><span class="p">,</span> <span class="n">_asdict</span><span class="p">,</span> <span class="n">__getnewargs__</span><span class="p">):</span>
+        <span class="n">method</span><span class="o">.</span><span class="n">__qualname__</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{typename}</span><span class="s1">.</span><span class="si">{method.__name__}</span><span class="s1">&#39;</span>
+
+    <span class="c1"># Build-up the class namespace dictionary</span>
+    <span class="c1"># and use type() to build the result class</span>
+    <span class="n">class_namespace</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{typename}</span><span class="s1">(</span><span class="si">{arg_list}</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;__slots__&#39;</span><span class="p">:</span> <span class="p">(),</span>
+        <span class="s1">&#39;_fields&#39;</span><span class="p">:</span> <span class="n">field_names</span><span class="p">,</span>
+        <span class="s1">&#39;__new__&#39;</span><span class="p">:</span> <span class="n">__new__</span><span class="p">,</span>
+        <span class="s1">&#39;_make&#39;</span><span class="p">:</span> <span class="n">_make</span><span class="p">,</span>
+        <span class="s1">&#39;_replace&#39;</span><span class="p">:</span> <span class="n">_replace</span><span class="p">,</span>
+        <span class="s1">&#39;__repr__&#39;</span><span class="p">:</span> <span class="n">__repr__</span><span class="p">,</span>
+        <span class="s1">&#39;_asdict&#39;</span><span class="p">:</span> <span class="n">_asdict</span><span class="p">,</span>
+        <span class="s1">&#39;__getnewargs__&#39;</span><span class="p">:</span> <span class="n">__getnewargs__</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">_nt_itemgetters</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">field_names</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">itemgetter_object</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">itemgetter_object</span> <span class="o">=</span> <span class="n">_itemgetter</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;Alias for field number </span><span class="si">{index}</span><span class="s1">&#39;</span>
+            <span class="n">cache</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">itemgetter_object</span><span class="p">,</span> <span class="n">doc</span>
+        <span class="n">class_namespace</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">itemgetter_object</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,),</span> <span class="n">class_namespace</span><span class="p">)</span>
+
+    <span class="c1"># For pickling to work, the __module__ variable needs to be set to the frame</span>
+    <span class="c1"># where the named tuple is created.  Bypass this step in environments where</span>
+    <span class="c1"># sys._getframe is not defined (Jython for example) or sys._getframe is not</span>
+    <span class="c1"># defined for arguments greater than 0 (IronPython), or where the user has</span>
+    <span class="c1"># specified a particular module.</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">_sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span> <span class="s1">&#39;__main__&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">pass</span>
+    <span class="k">if</span> <span class="n">module</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">__module__</span> <span class="o">=</span> <span class="n">module</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="record">
+<h2>Record<a class="headerlink" href="#record" title="Permalink to this headline">¶</a></h2>
+<p>This recipe is works on Python 2.2 to 2.7.  I can easily be adapted to Python 3,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># RECORDS (PYTHON RECIPE) by George Sakkis</span>
+<span class="c1"># http://code.activestate.com/recipes/576555-records/</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;recordtype&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">textwrap</span> <span class="k">import</span> <span class="n">dedent</span>
+<span class="kn">from</span> <span class="nn">keyword</span> <span class="k">import</span> <span class="n">iskeyword</span>
+
+
+<span class="k">def</span> <span class="nf">recordtype</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">default_kwds</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns a new class with named fields.</span>
+
+<span class="sd">    @keyword field_defaults: A mapping from (a subset of) field names to default</span>
+<span class="sd">        values.</span>
+<span class="sd">    @keyword default: If provided, the default value for all fields without an</span>
+<span class="sd">        explicit default in `field_defaults`.</span>
+
+<span class="sd">    &gt;&gt;&gt; Point = recordtype(&#39;Point&#39;, &#39;x y&#39;, default=0)</span>
+<span class="sd">    &gt;&gt;&gt; Point.__doc__           # docstring for the new class</span>
+<span class="sd">    &#39;Point(x, y)&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Point()                 # instantiate with defaults</span>
+<span class="sd">    Point(x=0, y=0)</span>
+<span class="sd">    &gt;&gt;&gt; p = Point(11, y=22)     # instantiate with positional args or keywords</span>
+<span class="sd">    &gt;&gt;&gt; p[0] + p.y              # accessible by name and index</span>
+<span class="sd">    33</span>
+<span class="sd">    &gt;&gt;&gt; p.x = 100; p[1] =200    # modifiable by name and index</span>
+<span class="sd">    &gt;&gt;&gt; p</span>
+<span class="sd">    Point(x=100, y=200)</span>
+<span class="sd">    &gt;&gt;&gt; x, y = p               # unpack</span>
+<span class="sd">    &gt;&gt;&gt; x, y</span>
+<span class="sd">    (100, 200)</span>
+<span class="sd">    &gt;&gt;&gt; d = p.todict()         # convert to a dictionary</span>
+<span class="sd">    &gt;&gt;&gt; d[&#39;x&#39;]</span>
+<span class="sd">    100</span>
+<span class="sd">    &gt;&gt;&gt; Point(**d) == p        # convert from a dictionary</span>
+<span class="sd">    True</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Parse and validate the field names.  Validation serves two purposes,</span>
+    <span class="c1"># generating informative error messages and preventing template injection attacks.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_names</span><span class="p">,</span> <span class="n">basestring</span><span class="p">):</span>
+        <span class="c1"># names separated by whitespace and/or commas</span>
+        <span class="n">field_names</span> <span class="o">=</span> <span class="n">field_names</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">field_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">field_names</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">field_names</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Records must have at least one field&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="n">typename</span><span class="p">,)</span> <span class="o">+</span> <span class="n">field_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">or</span> <span class="n">c</span><span class="o">==</span><span class="s1">&#39;_&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names can only contain &#39;</span>
+                             <span class="s1">&#39;alphanumeric characters and underscores: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">iskeyword</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names cannot be a keyword: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                             <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names cannot start with a &#39;</span>
+                             <span class="s1">&#39;number: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">seen_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Field names cannot start with an underscore: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                             <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">seen_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Encountered duplicate field name: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">seen_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="c1"># determine the func_defaults of __init__</span>
+    <span class="n">field_defaults</span> <span class="o">=</span> <span class="n">default_kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;field_defaults&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">if</span> <span class="s1">&#39;default&#39;</span> <span class="ow">in</span> <span class="n">default_kwds</span><span class="p">:</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="n">default_kwds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+        <span class="n">init_defaults</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">field_defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">default</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">field_defaults</span><span class="p">:</span>
+        <span class="n">init_defaults</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">default_fields</span> <span class="o">=</span> <span class="n">field_names</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">field_defaults</span><span class="p">):]</span>
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">default_fields</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">field_defaults</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Missing default parameter values&#39;</span><span class="p">)</span>
+        <span class="n">init_defaults</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">field_defaults</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">default_fields</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">default_kwds</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid keyword arguments: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">default_kwds</span><span class="p">)</span>
+    <span class="c1"># Create and fill-in the class template</span>
+    <span class="n">numfields</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
+    <span class="n">argtxt</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
+    <span class="n">reprtxt</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%%</span><span class="s1">r&#39;</span> <span class="o">%</span> <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="n">dicttxt</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1">: self.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="n">tupletxt</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">inittxt</span> <span class="o">=</span> <span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s</span><span class="s1">=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="n">itertxt</span> <span class="o">=</span> <span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;yield self.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="n">eqtxt</span>   <span class="o">=</span> <span class="s1">&#39; and &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;self.</span><span class="si">%s</span><span class="s1">==other.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        class </span><span class="si">%(typename)s</span><span class="s1">(object):</span>
+<span class="s1">            &#39;</span><span class="si">%(typename)s</span><span class="s1">(</span><span class="si">%(argtxt)s</span><span class="s1">)&#39;</span>
+
+<span class="s1">            __slots__  = </span><span class="si">%(field_names)r</span><span class="s1"></span>
+
+<span class="s1">            def __init__(self, </span><span class="si">%(argtxt)s</span><span class="s1">):</span>
+<span class="s1">                </span><span class="si">%(inittxt)s</span><span class="s1"></span>
+
+<span class="s1">            def __len__(self):</span>
+<span class="s1">                return </span><span class="si">%(numfields)d</span><span class="s1"></span>
+
+<span class="s1">            def __iter__(self):</span>
+<span class="s1">                </span><span class="si">%(itertxt)s</span><span class="s1"></span>
+
+<span class="s1">            def __getitem__(self, index):</span>
+<span class="s1">                return getattr(self, self.__slots__[index])</span>
+
+<span class="s1">            def __setitem__(self, index, value):</span>
+<span class="s1">                return setattr(self, self.__slots__[index], value)</span>
+
+<span class="s1">            def todict(self):</span>
+<span class="s1">                &#39;Return a new dict which maps field names to their values&#39;</span>
+<span class="s1">                return {</span><span class="si">%(dicttxt)s</span><span class="s1">}</span>
+
+<span class="s1">            def __repr__(self):</span>
+<span class="s1">                return &#39;</span><span class="si">%(typename)s</span><span class="s1">(</span><span class="si">%(reprtxt)s</span><span class="s1">)&#39; </span><span class="si">%%</span><span class="s1"> </span><span class="si">%(tupletxt)s</span><span class="s1"></span>
+
+<span class="s1">            def __eq__(self, other):</span>
+<span class="s1">                return isinstance(other, self.__class__) and </span><span class="si">%(eqtxt)s</span><span class="s1"></span>
+
+<span class="s1">            def __ne__(self, other):</span>
+<span class="s1">                return not self==other</span>
+
+<span class="s1">            def __getstate__(self):</span>
+<span class="s1">                return </span><span class="si">%(tupletxt)s</span><span class="s1"></span>
+
+<span class="s1">            def __setstate__(self, state):</span>
+<span class="s1">                </span><span class="si">%(tupletxt)s</span><span class="s1"> = state</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="nb">locals</span><span class="p">()</span>
+    <span class="c1"># Execute the template string in a temporary namespace</span>
+    <span class="n">namespace</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">exec</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">namespace</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span> <span class="n">template</span>
+    <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">template</span><span class="p">)</span>
+    <span class="n">cls</span> <span class="o">=</span> <span class="n">namespace</span><span class="p">[</span><span class="n">typename</span><span class="p">]</span>
+    <span class="n">cls</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">im_func</span><span class="o">.</span><span class="n">func_defaults</span> <span class="o">=</span> <span class="n">init_defaults</span>
+    <span class="c1"># For pickling to work, the __module__ variable needs to be set to the frame</span>
+    <span class="c1"># where the named tuple is created.  Bypass this step in enviroments where</span>
+    <span class="c1"># sys._getframe is not defined (Jython for example).</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;_getframe&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s1">&#39;cli&#39;</span><span class="p">:</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">__module__</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">cls</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">TestResults</span> <span class="o">=</span> <span class="n">recordtype</span><span class="p">(</span><span class="s1">&#39;TestResults&#39;</span><span class="p">,</span> <span class="s1">&#39;failed, attempted&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">TestResults</span><span class="p">(</span><span class="o">*</span><span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dataclasses">
+<h2>Dataclasses<a class="headerlink" href="#dataclasses" title="Permalink to this headline">¶</a></h2>
+<p>This code is current as of 6 December 2017.  It has been accepted and checked-in to the trunk for Python 3.7 but you should expect a few more tweaks before 3.7 goes final.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dataclass&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;field&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;FrozenInstanceError&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;InitVar&#39;</span><span class="p">,</span>
+
+           <span class="c1"># Helper functions.</span>
+           <span class="s1">&#39;fields&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;asdict&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;astuple&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;make_dataclass&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+           <span class="p">]</span>
+
+<span class="c1"># Raised when an attempt is made to modify a frozen class.</span>
+<span class="k">class</span> <span class="nc">FrozenInstanceError</span><span class="p">(</span><span class="ne">AttributeError</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="c1"># A sentinel object for default values to signal that a</span>
+<span class="c1">#  default-factory will be used.</span>
+<span class="c1"># This is given a nice repr() which will appear in the function</span>
+<span class="c1">#  signature of dataclasses&#39; constructors.</span>
+<span class="k">class</span> <span class="nc">_HAS_DEFAULT_FACTORY_CLASS</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;factory&gt;&#39;</span>
+<span class="n">_HAS_DEFAULT_FACTORY</span> <span class="o">=</span> <span class="n">_HAS_DEFAULT_FACTORY_CLASS</span><span class="p">()</span>
+
+<span class="c1"># A sentinel object to detect if a parameter is supplied or not.</span>
+<span class="k">class</span> <span class="nc">_MISSING_FACTORY</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;missing&gt;&#39;</span>
+<span class="n">_MISSING</span> <span class="o">=</span> <span class="n">_MISSING_FACTORY</span><span class="p">()</span>
+
+<span class="c1"># Since most per-field metadata will be unused, create an empty</span>
+<span class="c1">#  read-only proxy that can be shared among all fields.</span>
+<span class="n">_EMPTY_METADATA</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">MappingProxyType</span><span class="p">({})</span>
+
+<span class="c1"># Markers for the various kinds of fields and pseudo-fields.</span>
+<span class="n">_FIELD</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>                 <span class="c1"># An actual field.</span>
+<span class="n">_FIELD_CLASSVAR</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>        <span class="c1"># Not a field, but a ClassVar.</span>
+<span class="n">_FIELD_INITVAR</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>         <span class="c1"># Not a field, but an InitVar.</span>
+
+<span class="c1"># The name of an attribute on the class where we store the Field</span>
+<span class="c1">#  objects. Also used to check if a class is a Data Class.</span>
+<span class="n">_MARKER</span> <span class="o">=</span> <span class="s1">&#39;__dataclass_fields__&#39;</span>
+
+<span class="c1"># The name of the function, that if it exists, is called at the end of</span>
+<span class="c1"># __init__.</span>
+<span class="n">_POST_INIT_NAME</span> <span class="o">=</span> <span class="s1">&#39;__post_init__&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">_InitVarMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<span class="k">class</span> <span class="nc">InitVar</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_InitVarMeta</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="c1"># Instances of Field are only ever created from within this module,</span>
+<span class="c1">#  and only from the field() function, although Field instances are</span>
+<span class="c1">#  exposed externally as (conceptually) read-only objects.</span>
+<span class="c1"># name and type are filled in after the fact, not in __init__. They&#39;re</span>
+<span class="c1">#  not known at the time this class is instantiated, but it&#39;s</span>
+<span class="c1">#  convenient if they&#39;re available later.</span>
+<span class="c1"># When cls._MARKER is filled in with a list of Field objects, the name</span>
+<span class="c1">#  and type fields will have been populated.</span>
+<span class="k">class</span> <span class="nc">Field</span><span class="p">:</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;type&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;default_factory&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;repr&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;hash&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;init&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;compare&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;metadata&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;_field_type&#39;</span><span class="p">,</span>  <span class="c1"># Private: not to be used by user code.</span>
+                 <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="nb">repr</span><span class="p">,</span> <span class="nb">hash</span><span class="p">,</span> <span class="n">compare</span><span class="p">,</span>
+                 <span class="n">metadata</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_factory</span> <span class="o">=</span> <span class="n">default_factory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init</span> <span class="o">=</span> <span class="n">init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">repr</span> <span class="o">=</span> <span class="nb">repr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hash</span> <span class="o">=</span> <span class="nb">hash</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compare</span> <span class="o">=</span> <span class="n">compare</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">(</span><span class="n">_EMPTY_METADATA</span>
+                         <span class="k">if</span> <span class="n">metadata</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span>
+                         <span class="n">types</span><span class="o">.</span><span class="n">MappingProxyType</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_field_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;Field(&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;name=</span><span class="si">{self.name!r}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;type=</span><span class="si">{self.type}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;default=</span><span class="si">{self.default}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;default_factory=</span><span class="si">{self.default_factory}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;init=</span><span class="si">{self.init}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;repr=</span><span class="si">{self.repr}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;hash=</span><span class="si">{self.hash}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;compare=</span><span class="si">{self.compare}</span><span class="s1">,&#39;</span>
+                <span class="n">f</span><span class="s1">&#39;metadata=</span><span class="si">{self.metadata}</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># This function is used instead of exposing Field creation directly,</span>
+<span class="c1">#  so that a type checker can be told (via overloads) that this is a</span>
+<span class="c1">#  function whose type depends on its parameters.</span>
+<span class="k">def</span> <span class="nf">field</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_MISSING</span><span class="p">,</span> <span class="n">default_factory</span><span class="o">=</span><span class="n">_MISSING</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="nb">hash</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return an object to identify dataclass fields.</span>
+
+<span class="sd">    default is the default value of the field. default_factory is a</span>
+<span class="sd">    0-argument function called to initialize a field&#39;s value. If init</span>
+<span class="sd">    is True, the field will be a parameter to the class&#39;s __init__()</span>
+<span class="sd">    function. If repr is True, the field will be included in the</span>
+<span class="sd">    object&#39;s repr(). If hash is True, the field will be included in</span>
+<span class="sd">    the object&#39;s hash(). If compare is True, the field will be used in</span>
+<span class="sd">    comparison functions. metadata, if specified, must be a mapping</span>
+<span class="sd">    which is stored but not otherwise examined by dataclass.</span>
+
+<span class="sd">    It is an error to specify both default and default_factory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span> <span class="ow">and</span> <span class="n">default_factory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;cannot specify both default and default_factory&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="nb">repr</span><span class="p">,</span> <span class="nb">hash</span><span class="p">,</span> <span class="n">compare</span><span class="p">,</span>
+                 <span class="n">metadata</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_tuple_str</span><span class="p">(</span><span class="n">obj_name</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+    <span class="c1"># Return a string representing each field of obj_name as a tuple</span>
+    <span class="c1">#  member. So, if fields is [&#39;x&#39;, &#39;y&#39;] and obj_name is &quot;self&quot;,</span>
+    <span class="c1">#  return &quot;(self.x,self.y)&quot;.</span>
+
+    <span class="c1"># Special case for the 0-tuple.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;()&#39;</span>
+    <span class="c1"># Note the trailing comma, needed if this turns out to be a 1-tuple.</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;({&quot;,&quot;.join([f&quot;</span><span class="si">{obj_name}</span><span class="s1">.</span><span class="si">{f.name}</span><span class="s1">&quot; for f in fields])},)&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_create_fn</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">return_type</span><span class="o">=</span><span class="n">_MISSING</span><span class="p">):</span>
+    <span class="c1"># Note that we mutate locals when exec() is called. Caller beware!</span>
+    <span class="k">if</span> <span class="nb">locals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">locals</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">return_annotation</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">return_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="nb">locals</span><span class="p">[</span><span class="s1">&#39;_return_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">return_type</span>
+        <span class="n">return_annotation</span> <span class="o">=</span> <span class="s1">&#39;-&gt;_return_type&#39;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39; </span><span class="si">{b}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">body</span><span class="p">)</span>
+
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;def </span><span class="si">{name}</span><span class="s1">(</span><span class="si">{args}</span><span class="s1">)</span><span class="si">{return_annotation}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{body}</span><span class="s1">&#39;</span>
+
+    <span class="n">exec</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="nb">globals</span><span class="p">,</span> <span class="nb">locals</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">locals</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_field_assign</span><span class="p">(</span><span class="n">frozen</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">self_name</span><span class="p">):</span>
+    <span class="c1"># If we&#39;re a frozen class, then assign to our fields in __init__</span>
+    <span class="c1">#  via object.__setattr__.  Otherwise, just use a simple</span>
+    <span class="c1">#  assignment.</span>
+    <span class="c1"># self_name is what &quot;self&quot; is called in this function: don&#39;t</span>
+    <span class="c1">#  hard-code &quot;self&quot;, since that might be a field name.</span>
+    <span class="k">if</span> <span class="n">frozen</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;object.__setattr__(</span><span class="si">{self_name}</span><span class="s1">,</span><span class="si">{name!r}</span><span class="s1">,</span><span class="si">{value}</span><span class="s1">)&#39;</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self_name}</span><span class="s1">.</span><span class="si">{name}</span><span class="s1">=</span><span class="si">{value}</span><span class="s1">&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_field_init</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="nb">globals</span><span class="p">,</span> <span class="n">self_name</span><span class="p">):</span>
+    <span class="c1"># Return the text of the line in the body of __init__ that will</span>
+    <span class="c1">#  initialize this field.</span>
+
+    <span class="n">default_name</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;_dflt_</span><span class="si">{f.name}</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">init</span><span class="p">:</span>
+            <span class="c1"># This field has a default factory.  If a parameter is</span>
+            <span class="c1">#  given, use it.  If not, call the factory.</span>
+            <span class="nb">globals</span><span class="p">[</span><span class="n">default_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{default_name}</span><span class="s1">() &#39;</span>
+                     <span class="n">f</span><span class="s1">&#39;if </span><span class="si">{f.name}</span><span class="s1"> is _HAS_DEFAULT_FACTORY &#39;</span>
+                     <span class="n">f</span><span class="s1">&#39;else </span><span class="si">{f.name}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># This is a field that&#39;s not in the __init__ params, but</span>
+            <span class="c1">#  has a default factory function.  It needs to be</span>
+            <span class="c1">#  initialized here by calling the factory function,</span>
+            <span class="c1">#  because there&#39;s no other way to initialize it.</span>
+
+            <span class="c1"># For a field initialized with a default=defaultvalue, the</span>
+            <span class="c1">#  class dict just has the default value</span>
+            <span class="c1">#  (cls.fieldname=defaultvalue). But that won&#39;t work for a</span>
+            <span class="c1">#  default factory, the factory must be called in __init__</span>
+            <span class="c1">#  and we must assign that to self.fieldname. We can&#39;t</span>
+            <span class="c1">#  fall back to the class dict&#39;s value, both because it&#39;s</span>
+            <span class="c1">#  not set, and because it might be different per-class</span>
+            <span class="c1">#  (which, after all, is why we have a factory function!).</span>
+
+            <span class="nb">globals</span><span class="p">[</span><span class="n">default_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{default_name}</span><span class="s1">()&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># No default factory.</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">init</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">_MISSING</span><span class="p">:</span>
+                <span class="c1"># There&#39;s no default, just do an assignment.</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">elif</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+                <span class="nb">globals</span><span class="p">[</span><span class="n">default_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># This field does not need initialization. Signify that to</span>
+            <span class="c1">#  the caller by returning None.</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Only test this now, so that we can create variables for the</span>
+    <span class="c1">#  default.  However, return None to signify that we&#39;re not going</span>
+    <span class="c1">#  to actually do the assignment statement for InitVars.</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="o">==</span> <span class="n">_FIELD_INITVAR</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Now, actually generate the field assignment.</span>
+    <span class="k">return</span> <span class="n">_field_assign</span><span class="p">(</span><span class="n">frozen</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">self_name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_init_param</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="c1"># Return the __init__ parameter string for this field.</span>
+    <span class="c1">#  For example, the equivalent of &#39;x:int=3&#39; (except instead of &#39;int&#39;,</span>
+    <span class="c1">#  reference a variable set to int, and instead of &#39;3&#39;, reference a</span>
+    <span class="c1">#  variable set to 3).</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">_MISSING</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span> <span class="ow">is</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="c1"># There&#39;s no default, and no default_factory, just</span>
+        <span class="c1">#  output the variable name and type.</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">elif</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="c1"># There&#39;s a default, this will be the name that&#39;s used to look it up.</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;=_dflt_</span><span class="si">{f.name}</span><span class="s1">&#39;</span>
+    <span class="k">elif</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+        <span class="c1"># There&#39;s a factory function. Set a marker.</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;=_HAS_DEFAULT_FACTORY&#39;</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{f.name}</span><span class="s1">:_type_</span><span class="si">{f.name}{default}</span><span class="s1">&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_init_fn</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="n">has_post_init</span><span class="p">,</span> <span class="n">self_name</span><span class="p">):</span>
+    <span class="c1"># fields contains both real fields and InitVar pseudo-fields.</span>
+
+    <span class="c1"># Make sure we don&#39;t have fields without defaults following fields</span>
+    <span class="c1">#  with defaults.  This actually would be caught when exec-ing the</span>
+    <span class="c1">#  function source code, but catching it here gives a better error</span>
+    <span class="c1">#  message, and future-proofs us in case we build up the function</span>
+    <span class="c1">#  using ast.</span>
+    <span class="n">seen_default</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="c1"># Only consider fields in the __init__ call.</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">init</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">_MISSING</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span> <span class="ow">is</span> <span class="n">_MISSING</span><span class="p">):</span>
+                <span class="n">seen_default</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="n">seen_default</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;non-default argument </span><span class="si">{f.name!r}</span><span class="s1"> &#39;</span>
+                                <span class="s1">&#39;follows default argument&#39;</span><span class="p">)</span>
+
+    <span class="nb">globals</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_MISSING&#39;</span><span class="p">:</span> <span class="n">_MISSING</span><span class="p">,</span>
+               <span class="s1">&#39;_HAS_DEFAULT_FACTORY&#39;</span><span class="p">:</span> <span class="n">_HAS_DEFAULT_FACTORY</span><span class="p">}</span>
+
+    <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="c1"># Do not initialize the pseudo-fields, only the real ones.</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">_field_init</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">frozen</span><span class="p">,</span> <span class="nb">globals</span><span class="p">,</span> <span class="n">self_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># line is None means that this field doesn&#39;t require</span>
+            <span class="c1">#  initialization. Just skip it.</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="c1"># Does this class have a post-init function?</span>
+    <span class="k">if</span> <span class="n">has_post_init</span><span class="p">:</span>
+        <span class="n">params_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span>
+                              <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">is</span> <span class="n">_FIELD_INITVAR</span><span class="p">)</span>
+        <span class="n">body_lines</span> <span class="o">+=</span> <span class="p">[</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self_name}</span><span class="s1">.</span><span class="si">{_POST_INIT_NAME}</span><span class="s1">(</span><span class="si">{params_str}</span><span class="s1">)&#39;</span><span class="p">]</span>
+
+    <span class="c1"># If no body lines, use &#39;pass&#39;.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">body_lines</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pass&#39;</span><span class="p">]</span>
+
+    <span class="nb">locals</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="s1">&#39;_type_</span><span class="si">{f.name}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">_create_fn</span><span class="p">(</span><span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+                      <span class="p">[</span><span class="n">self_name</span><span class="p">]</span> <span class="o">+</span><span class="p">[</span><span class="n">_init_param</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">init</span><span class="p">],</span>
+                      <span class="n">body_lines</span><span class="p">,</span>
+                      <span class="nb">locals</span><span class="o">=</span><span class="nb">locals</span><span class="p">,</span>
+                      <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">,</span>
+                      <span class="n">return_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_repr_fn</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_create_fn</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+                      <span class="p">[</span><span class="s1">&#39;self&#39;</span><span class="p">],</span>
+                      <span class="p">[</span><span class="s1">&#39;return self.__class__.__qualname__ + f&quot;(&#39;</span> <span class="o">+</span>
+                       <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{f.name}</span><span class="s2">={{self.</span><span class="si">{f.name}</span><span class="s2">!r}}&quot;</span>
+                                  <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">])</span> <span class="o">+</span>
+                       <span class="s1">&#39;)&quot;&#39;</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">_frozen_setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="n">FrozenInstanceError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;cannot assign to field </span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_frozen_delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="n">FrozenInstanceError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;cannot delete field </span><span class="si">{name!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_cmp_fn</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">self_tuple</span><span class="p">,</span> <span class="n">other_tuple</span><span class="p">):</span>
+    <span class="c1"># Create a comparison function.  If the fields in the object are</span>
+    <span class="c1">#  named &#39;x&#39; and &#39;y&#39;, then self_tuple is the string</span>
+    <span class="c1">#  &#39;(self.x,self.y)&#39; and other_tuple is the string</span>
+    <span class="c1">#  &#39;(other.x,other.y)&#39;.</span>
+
+    <span class="k">return</span> <span class="n">_create_fn</span><span class="p">(</span><span class="n">name</span><span class="p">,</span>
+                      <span class="p">[</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">],</span>
+                      <span class="p">[</span> <span class="s1">&#39;if other.__class__ is self.__class__:&#39;</span><span class="p">,</span>
+                       <span class="n">f</span><span class="s1">&#39; return </span><span class="si">{self_tuple}{op}{other_tuple}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;return NotImplemented&#39;</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">_set_eq_fns</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+    <span class="c1"># Create and set the equality comparison methods on cls.</span>
+    <span class="c1"># Pre-compute self_tuple and other_tuple, then re-use them for</span>
+    <span class="c1">#  each function.</span>
+    <span class="n">self_tuple</span> <span class="o">=</span> <span class="n">_tuple_str</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="n">other_tuple</span> <span class="o">=</span> <span class="n">_tuple_str</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;!=&#39;</span><span class="p">),</span>
+                     <span class="p">]:</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">_cmp_fn</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">self_tuple</span><span class="p">,</span> <span class="n">other_tuple</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_set_order_fns</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+    <span class="c1"># Create and set the ordering methods on cls.</span>
+    <span class="c1"># Pre-compute self_tuple and other_tuple, then re-use them for</span>
+    <span class="c1">#  each function.</span>
+    <span class="n">self_tuple</span> <span class="o">=</span> <span class="n">_tuple_str</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="n">other_tuple</span> <span class="o">=</span> <span class="n">_tuple_str</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;=&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;=&#39;</span><span class="p">),</span>
+                     <span class="p">]:</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">_cmp_fn</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">self_tuple</span><span class="p">,</span> <span class="n">other_tuple</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_hash_fn</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+    <span class="n">self_tuple</span> <span class="o">=</span> <span class="n">_tuple_str</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_create_fn</span><span class="p">(</span><span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+                      <span class="p">[</span><span class="s1">&#39;self&#39;</span><span class="p">],</span>
+                      <span class="p">[</span><span class="n">f</span><span class="s1">&#39;return hash(</span><span class="si">{self_tuple}</span><span class="s1">)&#39;</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">_get_field</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">a_type</span><span class="p">):</span>
+    <span class="c1"># Return a Field object, for this field name and type.  ClassVars</span>
+    <span class="c1">#  and InitVars are also returned, but marked as such (see</span>
+    <span class="c1">#  f._field_type).</span>
+
+    <span class="c1"># If the default value isn&#39;t derived from field, then it&#39;s</span>
+    <span class="c1">#  only a normal default value.  Convert it to a Field().</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">_MISSING</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Field</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">default</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">)</span>
+
+    <span class="c1"># Assume it&#39;s a normal field until proven otherwise.</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="o">=</span> <span class="n">_FIELD</span>
+
+    <span class="c1"># Only at this point do we know the name and the type. Set them.</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">a_name</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">a_type</span>
+
+    <span class="c1"># If typing has not been imported, then it&#39;s impossible for</span>
+    <span class="c1">#  any annotation to be a ClassVar. So, only look for ClassVar</span>
+    <span class="c1">#  if typing has been imported.</span>
+    <span class="n">typing</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;typing&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">typing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># This test uses a typing internal class, but it&#39;s the best</span>
+        <span class="c1">#  way to test if this is a ClassVar.</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a_type</span><span class="p">)</span> <span class="ow">is</span> <span class="n">typing</span><span class="o">.</span><span class="n">_ClassVar</span><span class="p">:</span>
+            <span class="c1"># This field is a ClassVar, so it&#39;s not a field.</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="o">=</span> <span class="n">_FIELD_CLASSVAR</span>
+
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">is</span> <span class="n">_FIELD</span><span class="p">:</span>
+        <span class="c1"># Check if this is an InitVar.</span>
+        <span class="k">if</span> <span class="n">a_type</span> <span class="ow">is</span> <span class="n">InitVar</span><span class="p">:</span>
+            <span class="c1"># InitVars are not fields, either.</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="o">=</span> <span class="n">_FIELD_INITVAR</span>
+
+    <span class="c1"># Validations for fields.  This is delayed until now, instead of</span>
+    <span class="c1"># in the Field() constructor, since only here do we know the field</span>
+    <span class="c1"># name, which allows better error reporting.</span>
+
+    <span class="c1"># Special restrictions for ClassVar and InitVar.</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">_FIELD_CLASSVAR</span><span class="p">,</span> <span class="n">_FIELD_INITVAR</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">default_factory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MISSING</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;field </span><span class="si">{f.name}</span><span class="s1"> cannot have a &#39;</span>
+                            <span class="s1">&#39;default factory&#39;</span><span class="p">)</span>
+        <span class="c1"># Should I check for other field settings? default_factory</span>
+        <span class="c1">#  seems the most serious to check for. Maybe add others.  For</span>
+        <span class="c1">#  example, how about init=False (or really,</span>
+        <span class="c1">#  init=&lt;not-the-default-init-value&gt;)? It makes no sense for</span>
+        <span class="c1">#  ClassVar and InitVar to specify init=&lt;anything&gt;.</span>
+
+    <span class="c1"># For real fields, disallow mutable defaults for known types.</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">is</span> <span class="n">_FIELD</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">default</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">set</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;mutable default {type(f.default)} for field &#39;</span>
+                         <span class="n">f</span><span class="s1">&#39;</span><span class="si">{f.name}</span><span class="s1"> is not allowed: use default_factory&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span>
+
+
+<span class="k">def</span> <span class="nf">_find_fields</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+    <span class="c1"># Return a list of Field objects, in order, for this class (and no</span>
+    <span class="c1">#  base classes).  Fields are found from __annotations__ (which is</span>
+    <span class="c1">#  guaranteed to be ordered).  Default values are from class</span>
+    <span class="c1">#  attributes, if a field has a default.  If the default value is</span>
+    <span class="c1">#  a Field(), then it contains additional info beyond (and</span>
+    <span class="c1">#  possibly including) the actual default value.  Pseudo-fields</span>
+    <span class="c1">#  ClassVars and InitVars are included, despite the fact that</span>
+    <span class="c1">#  they&#39;re not real fields.  That&#39;s deal with later.</span>
+
+    <span class="n">annotations</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__annotations__&#39;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">_get_field</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">a_type</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">a_type</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+
+<span class="k">def</span> <span class="nf">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="c1"># Raise TypeError if an attribute by this name already exists.</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Cannot overwrite attribute </span><span class="si">{name}</span><span class="s1"> &#39;</span>
+                        <span class="n">f</span><span class="s1">&#39;in </span><span class="si">{cls.__name__}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_process_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">repr</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="nb">hash</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">frozen</span><span class="p">):</span>
+    <span class="c1"># Use an OrderedDict because:</span>
+    <span class="c1">#  - Order matters!</span>
+    <span class="c1">#  - Derived class fields overwrite base class fields, but the</span>
+    <span class="c1">#    order is defined by the base class, which is found first.</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+
+    <span class="c1"># Find our base classes in reverse MRO order, and exclude</span>
+    <span class="c1">#  ourselves.  In reversed order so that more derived classes</span>
+    <span class="c1">#  override earlier field definitions in base classes.</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">__mro__</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="c1"># Only process classes that have been processed by our</span>
+        <span class="c1">#  decorator.  That is, they have a _MARKER attribute.</span>
+        <span class="n">base_fields</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">_MARKER</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">base_fields</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">base_fields</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">fields</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span>
+
+    <span class="c1"># Now find fields in our class.  While doing so, validate some</span>
+    <span class="c1">#  things, and set the default values (as class attributes)</span>
+    <span class="c1">#  where we can.</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">_find_fields</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">fields</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span>
+
+        <span class="c1"># If the class attribute (which is the default value for</span>
+        <span class="c1">#  this field) exists and is of type &#39;Field&#39;, replace it</span>
+        <span class="c1">#  with the real default.  This is so that normal class</span>
+        <span class="c1">#  introspection sees a real default value, not a Field.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">Field</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">_MISSING</span><span class="p">:</span>
+                <span class="c1"># If there&#39;s no default, delete the class attribute.</span>
+                <span class="c1">#  This happens if we specify field(repr=False), for</span>
+                <span class="c1">#  example (that is, we specified a field object, but</span>
+                <span class="c1">#  no default value).  Also if we&#39;re using a default</span>
+                <span class="c1">#  factory.  The class attribute should not be set at</span>
+                <span class="c1">#  all in the post-processed class.</span>
+                <span class="nb">delattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+
+    <span class="c1"># Remember all of the fields on our class (including bases).  This</span>
+    <span class="c1">#  marks this class as being a dataclass.</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">_MARKER</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+
+    <span class="c1"># We also need to check if a parent class is frozen: frozen has to</span>
+    <span class="c1">#  be inherited down.</span>
+    <span class="n">is_frozen</span> <span class="o">=</span> <span class="n">frozen</span> <span class="ow">or</span> <span class="n">cls</span><span class="o">.</span><span class="n">__setattr__</span> <span class="ow">is</span> <span class="n">_frozen_setattr</span>
+
+    <span class="c1"># If we&#39;re generating ordering methods, we must be generating</span>
+    <span class="c1">#  the eq methods.</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">eq</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;eq must be true if order is true&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">init</span><span class="p">:</span>
+        <span class="c1"># Does this class have a post-init function?</span>
+        <span class="n">has_post_init</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">_POST_INIT_NAME</span><span class="p">)</span>
+
+        <span class="c1"># Include InitVars and regular fields (so, not ClassVars).</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+                       <span class="n">_init_fn</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span>
+                                              <span class="ow">in</span> <span class="p">(</span><span class="n">_FIELD</span><span class="p">,</span> <span class="n">_FIELD_INITVAR</span><span class="p">),</span>
+                                            <span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span>
+                                <span class="n">is_frozen</span><span class="p">,</span>
+                                <span class="n">has_post_init</span><span class="p">,</span>
+                                <span class="c1"># The name to use for the &quot;self&quot; param</span>
+                                <span class="c1">#  in __init__.  Use &quot;self&quot; if possible.</span>
+                                <span class="s1">&#39;__dataclass_self__&#39;</span> <span class="k">if</span> <span class="s1">&#39;self&#39;</span> <span class="ow">in</span> <span class="n">fields</span>
+                                    <span class="k">else</span> <span class="s1">&#39;self&#39;</span><span class="p">,</span>
+                                <span class="p">))</span>
+
+    <span class="c1"># Get the fields as a list, and include only real fields.  This is</span>
+    <span class="c1">#  used in all of the following methods.</span>
+    <span class="n">field_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">is</span> <span class="n">_FIELD</span><span class="p">,</span>
+                             <span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+    <span class="k">if</span> <span class="nb">repr</span><span class="p">:</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+                       <span class="n">_repr_fn</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">repr</span><span class="p">,</span> <span class="n">field_list</span><span class="p">))))</span>
+
+    <span class="k">if</span> <span class="n">is_frozen</span><span class="p">:</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="n">_frozen_setattr</span><span class="p">)</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="n">_frozen_delattr</span><span class="p">)</span>
+
+    <span class="n">generate_hash</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">hash</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">eq</span> <span class="ow">and</span> <span class="n">frozen</span><span class="p">:</span>
+            <span class="c1"># Generate a hash function.</span>
+            <span class="n">generate_hash</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">eq</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">frozen</span><span class="p">:</span>
+            <span class="c1"># Not hashable.</span>
+            <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">eq</span><span class="p">:</span>
+            <span class="c1"># Otherwise, use the base class definition of hash().  That is,</span>
+            <span class="c1">#  don&#39;t set anything on this class.</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="s2">&quot;can&#39;t get here&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">generate_hash</span> <span class="o">=</span> <span class="nb">hash</span>
+    <span class="k">if</span> <span class="n">generate_hash</span><span class="p">:</span>
+        <span class="n">_set_attribute</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+                       <span class="n">_hash_fn</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">compare</span>
+                                                      <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">hash</span> <span class="ow">is</span> <span class="kc">None</span>
+                                                      <span class="k">else</span> <span class="n">f</span><span class="o">.</span><span class="n">hash</span><span class="p">,</span>
+                                            <span class="n">field_list</span><span class="p">))))</span>
+
+    <span class="k">if</span> <span class="n">eq</span><span class="p">:</span>
+        <span class="c1"># Create and __eq__ and __ne__ methods.</span>
+        <span class="n">_set_eq_fns</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">compare</span><span class="p">,</span> <span class="n">field_list</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="n">order</span><span class="p">:</span>
+        <span class="c1"># Create and __lt__, __le__, __gt__, and __ge__ methods.</span>
+        <span class="c1"># Create and set the comparison functions.</span>
+        <span class="n">_set_order_fns</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">compare</span><span class="p">,</span> <span class="n">field_list</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">):</span>
+        <span class="c1"># Create a class doc-string.</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span>
+                       <span class="nb">str</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">cls</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; -&gt; None&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">cls</span>
+
+
+<span class="c1"># _cls should never be specified by keyword, so start it with an</span>
+<span class="c1">#  underscore. The presense of _cls is used to detect if this</span>
+<span class="c1">#  decorator is being called with parameters or not.</span>
+<span class="k">def</span> <span class="nf">dataclass</span><span class="p">(</span><span class="n">_cls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="nb">hash</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the same class as was passed in, with dunder methods</span>
+<span class="sd">    added based on the fields defined in the class.</span>
+
+<span class="sd">    Examines PEP 526 __annotations__ to determine fields.</span>
+
+<span class="sd">    If init is true, an __init__() method is added to the class. If</span>
+<span class="sd">    repr is true, a __repr__() method is added. If order is true, rich</span>
+<span class="sd">    comparison dunder methods are added. If hash is true, a __hash__()</span>
+<span class="sd">    method function is added. If frozen is true, fields may not be</span>
+<span class="sd">    assigned to after instance creation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_process_class</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">repr</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="nb">hash</span><span class="p">,</span> <span class="n">init</span><span class="p">,</span> <span class="n">frozen</span><span class="p">)</span>
+
+    <span class="c1"># See if we&#39;re being called as @dataclass or @dataclass().</span>
+    <span class="k">if</span> <span class="n">_cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># We&#39;re called with parens.</span>
+        <span class="k">return</span> <span class="n">wrap</span>
+
+    <span class="c1"># We&#39;re called as @dataclass without parens.</span>
+    <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">_cls</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">fields</span><span class="p">(</span><span class="n">class_or_instance</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a tuple describing the fields of this dataclass.</span>
+
+<span class="sd">    Accepts a dataclass or an instance of one. Tuple elements are of</span>
+<span class="sd">    type Field.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Might it be worth caching this, per class?</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fields</span> <span class="o">=</span>  <span class="nb">getattr</span><span class="p">(</span><span class="n">class_or_instance</span><span class="p">,</span> <span class="n">_MARKER</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;must be called with a dataclass type or instance&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Exclude pseudo-fields.</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">_field_type</span> <span class="ow">is</span> <span class="n">_FIELD</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns True if obj is an instance of a dataclass.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">_MARKER</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">asdict</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">dict_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the fields of a dataclass instance as a new dictionary mapping</span>
+<span class="sd">    field names to field values.</span>
+
+<span class="sd">    Example usage:</span>
+
+<span class="sd">      @dataclass</span>
+<span class="sd">      class C:</span>
+<span class="sd">          x: int</span>
+<span class="sd">          y: int</span>
+
+<span class="sd">      c = C(1, 2)</span>
+<span class="sd">      assert asdict(c) == {&#39;x&#39;: 1, &#39;y&#39;: 2}</span>
+
+<span class="sd">    If given, &#39;dict_factory&#39; will be used instead of built-in dict.</span>
+<span class="sd">    The function applies recursively to field values that are</span>
+<span class="sd">    dataclass instances. This will also look into built-in containers:</span>
+<span class="sd">    tuples, lists, and dicts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;asdict() should be called on dataclass instances&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_asdict_inner</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">dict_factory</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_asdict_inner</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">dict_factory</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">_asdict_inner</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">dict_factory</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">dict_factory</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)(</span><span class="n">_asdict_inner</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dict_factory</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)((</span><span class="n">_asdict_inner</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dict_factory</span><span class="p">),</span> <span class="n">_asdict_inner</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dict_factory</span><span class="p">))</span>
+                          <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">astuple</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="o">=</span><span class="nb">tuple</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the fields of a dataclass instance as a new tuple of field values.</span>
+
+<span class="sd">    Example usage::</span>
+
+<span class="sd">      @dataclass</span>
+<span class="sd">      class C:</span>
+<span class="sd">          x: int</span>
+<span class="sd">          y: int</span>
+
+<span class="sd">    c = C(1, 2)</span>
+<span class="sd">    assert asdtuple(c) == (1, 2)</span>
+
+<span class="sd">    If given, &#39;tuple_factory&#39; will be used instead of built-in tuple.</span>
+<span class="sd">    The function applies recursively to field values that are</span>
+<span class="sd">    dataclass instances. This will also look into built-in containers:</span>
+<span class="sd">    tuples, lists, and dicts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;astuple() should be called on dataclass instances&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_astuple_inner</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_astuple_inner</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">_astuple_inner</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">tuple_factory</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tuple_factory</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)(</span><span class="n">_astuple_inner</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)((</span><span class="n">_astuple_inner</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="p">),</span> <span class="n">_astuple_inner</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">tuple_factory</span><span class="p">))</span>
+                          <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_dataclass</span><span class="p">(</span><span class="n">cls_name</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="p">(),</span> <span class="n">namespace</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a new dynamically created dataclass.</span>
+
+<span class="sd">    The dataclass name will be &#39;cls_name&#39;.  &#39;fields&#39; is an interable</span>
+<span class="sd">    of either (name, type) or (name, type, Field) objects. Field</span>
+<span class="sd">    objects are created by calling &#39;field(name, type [, Field])&#39;.</span>
+
+<span class="sd">      C = make_class(&#39;C&#39;, [(&#39;a&#39;, int&#39;, (&#39;b&#39;, int, Field(init=False))], bases=Base)</span>
+
+<span class="sd">    is equivalent to:</span>
+
+<span class="sd">      @dataclass</span>
+<span class="sd">      class C(Base):</span>
+<span class="sd">          a: int</span>
+<span class="sd">          b: int = field(init=False)</span>
+
+<span class="sd">    For the bases and namespace paremeters, see the builtin type() function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">namespace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">namespace</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Copy namespace since we&#39;re going to mutate it.</span>
+        <span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">anns</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tp</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">)</span>
+    <span class="n">namespace</span><span class="p">[</span><span class="s1">&#39;__annotations__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anns</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">tp</span><span class="p">,</span> <span class="n">spec</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="n">namespace</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec</span>
+    <span class="n">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">cls_name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">namespace</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dataclass</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">changes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a new object replacing specified fields with new values.</span>
+
+<span class="sd">    This is especially useful for frozen classes.  Example usage:</span>
+
+<span class="sd">      @dataclass(frozen=True)</span>
+<span class="sd">      class C:</span>
+<span class="sd">          x: int</span>
+<span class="sd">          y: int</span>
+
+<span class="sd">      c = C(1, 2)</span>
+<span class="sd">      c1 = replace(c, x=3)</span>
+<span class="sd">      assert c1.x == 3 and c1.y == 2</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+
+    <span class="c1"># We&#39;re going to mutate &#39;changes&#39;, but that&#39;s okay because it&#39;s a new</span>
+    <span class="c1">#  dict, even if called with &#39;replace(obj, **my_changes)&#39;.</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_isdataclass</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;replace() should be called on dataclass instances&quot;</span><span class="p">)</span>
+
+    <span class="c1"># It&#39;s an error to have init=False fields in &#39;changes&#39;.</span>
+    <span class="c1"># If a field is not in &#39;changes&#39;, read its value from the provided obj.</span>
+
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">_MARKER</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">init</span><span class="p">:</span>
+            <span class="c1"># Error if this field is specified in changes.</span>
+            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">changes</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;field </span><span class="si">{f.name}</span><span class="s1"> is declared with &#39;</span>
+                                 <span class="s1">&#39;init=False, it cannot be specified with &#39;</span>
+                                 <span class="s1">&#39;replace()&#39;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">changes</span><span class="p">:</span>
+            <span class="n">changes</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Create the new object, which calls __init__() and __post_init__</span>
+    <span class="c1">#  (if defined), using all of the init fields we&#39;ve added and/or</span>
+    <span class="c1">#  left in &#39;changes&#39;.</span>
+    <span class="c1"># If there are values supplied in changes that aren&#39;t fields, this</span>
+    <span class="c1">#  will correctly raise a TypeError.</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="o">**</span><span class="n">changes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="summary.html" class="btn btn-neutral" title="Summary" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Raymond Hettinger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

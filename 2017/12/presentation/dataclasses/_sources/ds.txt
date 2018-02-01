@@ -1,0 +1,106 @@
+Dataclasses
+===========
+
+PEP 557 has landed.  Woohoo!
+
+What it does
+------------
+
+Per PEP 557, Data Classes can be thought of as "mutable namedtuples
+with defaults"  and "one of the main design goals of Data Classes is
+to support static type checkers."
+
+Two ways of looking at it:
+
+* attribute based data holder
+* boilerplate for class
+
+Roughly, dataclasses are a tool for auto-generating code for:
+
+* class docstring
+* __init__
+* __repr__
+* __eq__ with strong type checking
+* rich comparisons
+* hashing
+* read-only enforced by __setattr__ __delattr__
+
+Normal Dataclass without Slots
+------------------------------
+
+In-line call::
+
+    from dataclasses import make_dataclass
+
+    Color = make_dataclass('Color', [('hue', int), ('saturation', 'float'), ('lightness', 'float')])
+    dark_orange = Color(hue=33, saturation=1.00, lightness=0.5)
+
+Nicer way::
+
+    from dataclasses import dataclass
+
+    @dataclass
+    class Color:
+        hue: int
+        saturation: float
+        lightness: float = 0.5
+
+Dataclass with Slots
+--------------------
+
+In-line call::
+
+    from dataclasses import make_dataclass
+
+    Color = make_dataclass('Color',
+                           [('hue', int), ('saturation', float), ('lightness', float)],
+                            namespace={'__slots__': ['hue', 'saturation', 'lightness']})
+    dark_orange = Color(hue=33, saturation=1.00, lightness=0.5)
+
+Nicer way::
+    
+    from dataclasses import dataclass
+
+    @dataclass
+    class Color:
+        __slots__ = ['hue', 'saturation', 'lightness']
+        hue: int
+        saturation: float
+        lightness: float
+
+    dark_orange = Color(hue=33, saturation=1.00, lightness=0.5
+
+Examples
+========
+
+Wrapper for priority queues
+---------------------------
+
+::
+
+    @dataclass(order=True)
+    class KeyedItem:
+        key: int
+        item: Any=field(compare=False)
+
+
+Emulate a namedtuple
+--------------------
+
+Auto-generates the repr. No other benefit.
+Could let you change equality relationship.
+
+::
+
+    from operator import itemgetter 
+
+    @dataclass(init=False, eq=False, order=False)
+    class Point(tuple):
+        __slots__ = ()
+        def __new__(cls, x, y):
+            return tuple.__new__(cls, (x, y))
+        x: Any = property(itemgetter(0))
+        y: Any = property(itemgetter(1))
+
+
+    

@@ -1,0 +1,78 @@
+Bunch and SimpleNamespace
+=========================
+
+Characteristics
+---------------
+
+* Underlying Store: Instance dict
+* Size: 296 bytes
+* Mutable
+
+
+Virtues
+-------
+
+* Fast attribute access
+
+
+Vices
+-----
+
+* Takes a lot of space
+* Not unpackable
+* Not orderable
+* Doesn't create a class
+* No default values
+
+
+Doing it Manually
+-----------------
+
+We use normal attribute access to extract the data.
+
+::
+
+    class Color:
+        def __init__(self, hue, saturation, lightness):
+            self.hue = hue
+            self.saturation = saturation
+            self.lightness = lightness
+
+Putting it to Work
+------------------
+
+::
+
+    dark_orange = Bunch(hue=33, saturation=1.00, lightness=0.5)
+    print(dark_orange)
+
+Recipe
+------
+
+::
+
+    class Bunch(object):
+        def __init__(self, **kwds):
+            self.__dict__.update(kwds)
+
+
+Optimization
+------------
+
+The keyword dictionary can directly *replace* the instance dictionary:
+
+::
+
+    class Bunch(object):
+        def __init__(self, **kwds):
+            self.__dict__ = kwds
+
+C Version Built-in to Python
+----------------------------
+
+::
+
+    from types import SimpleNamespace
+
+    dark_orange = SimpleNamespace(hue=33, saturation=1.00, lightness=0.5)
+    print(dark_orange)

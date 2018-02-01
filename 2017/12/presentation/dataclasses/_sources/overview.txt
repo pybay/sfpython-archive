@@ -1,0 +1,22 @@
+Problem to be Solved
+====================
+
+* In the HSL color system, dark orange is 33 degrees on the color wheel at 100% saturation and 50% lightness.
+* We want to pass around HSL values in a way is space-efficient, that has beautiful code, and is easy to debug.
+
+There are many ways
+-------------------
+
+.. literalinclude:: code/generated.py
+
+This outputs::
+
+    (33, 1.0, 0.5)
+    {'hue': 33, 'saturation': 1.0, 'lightness': 0.5}
+    <__main__.Color object at 0x10385ef28>
+    <bunch.Bunch object at 0x10385ef60>
+    namespace(hue=33, lightness=0.6, saturation=1.0)
+    Color(hue=33, saturation=1.0, lightness=0.5)
+    Color(hue=33, saturation=1.0, lightness=0.5)
+    Color(hue=33, saturation=1.0, lightness=0.5)
+    Color(hue=33, saturation=1.0, lightness=0.5)

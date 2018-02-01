@@ -1,0 +1,54 @@
+Summary
+=======
+
+Let's see, how do I feel about all this?
+
+**I really like the new dataclasses!**
+
+If you need mutable named tuples today, try George Sakkis's
+*Record* class or use the attached dataclass code that runs
+fine on Python3.6 (but not prior).
+
+'nuff said.
+
+Pretty Table
+------------
+
+Summary of your code generation options:
+
+=====================   ===========  ========  =========
+Code Generators         Store        Space     Mutable
+=====================   ===========  ========  =========
+Namedtuple              tuple        72        No
+Record                  instslots    64        Yes
+Dataclasses             instdict     296       Optional
+Dataclasses w/slots     instslots    64        Optional
+=====================   ===========  ========  =========
+
+
+Gains and Losses
+----------------
+
+Some things as named tuples (in typing module):
+
+* attribute access
+* introspectable fields list
+* defaults values
+* variable annotations
+* conflict between slots and default values
+
+Some nice improvements:
+
+* slotted version sightly more compact by 1 field
+* faster attribute access
+* optional mutability
+* more specific equality tests
+* controllable init, hash, rich compares, and repr
+* subclassable composition
+
+Some things aren't as nice:
+
+* slower creation time
+* not substitutable for tuples or unpackable
+* not great for subclassing immutable types
+* much higher complexity and learning curve (esp. with fields() function and build flags)

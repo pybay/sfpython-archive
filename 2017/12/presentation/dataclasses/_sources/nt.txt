@@ -1,0 +1,83 @@
+Named Tuples
+============
+
+Characteristics
+---------------
+
+* Underlying Store: tuple
+* Size: 72 bytes
+* Immutable / Hashable
+* Iterable / Unpackable
+
+Virtues
+-------
+
+* Easy to use
+* Substitutable for dictionary
+* Fast indexed access
+* Fast slicing
+* Somewhat compact
+* Orderable
+
+Vices
+-----
+
+* Attribute access is slower than native access
+* No built-in support for typing
+
+
+Doing it Manually
+-----------------
+
+We rely on *property* and *itemgetter* to extract the data.
+
+::
+
+    from operator import itemgetter
+
+    class Color(tuple):
+        'Color(hue, saturation, lightness)'
+
+        __slots__ = ()
+
+        _fields = ['hue', 'saturation', 'lightness']
+
+        def __new__(cls, hue, saturation, lightness):
+            return tuple.__new__(cls, (hue, saturation, lightness))
+
+        def __repr__(self):
+            return f'{self.__class__.__name__}(hue={self.hue!r}, ' \
+                   f'saturation={self.saturation!r}, lightness={self.lightness})'
+
+        hue = property(itemgetter(0))
+        saturation = property(itemgetter(1))
+        lightness = property(itemgetter(2))
+
+Doing it with Code Generation
+-----------------------------
+
+ ::
+
+    Color = namedtuple('Color', ['hue', 'saturation', 'lightness'])
+
+Nicer way with typing.NamedTuple
+--------------------------------
+
+Let's add typing and default values :-)
+
+::
+
+    class Color(NamedTuple):
+        __slots__ = ()
+        hue: int
+        saturation: float
+        lightness: float = 0.5
+
+
+Putting it to Work
+------------------
+
+::
+
+    dark_orange = Color(33, 1.00, 0.50)        # http://rgb.to/darkorange
+    print(dark_orange)

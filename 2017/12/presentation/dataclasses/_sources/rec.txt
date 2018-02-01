@@ -1,0 +1,80 @@
+Record (mutable named tuple)
+============================
+
+Characteristics
+---------------
+
+* Underlying Store: Instance slots
+* Size: 64 bytes
+* Mutable
+* Iterable / Unpackable
+
+Virtues
+-------
+
+* Fastest attribute access
+* Most compact
+
+Vices
+-----
+
+* No built-in support for typing
+* Slow indexed access
+* Not orderable
+
+
+Doing it Manually
+-----------------
+
+We use normal attribute access to extract the data.
+
+::
+
+    class Color(object):
+        'Color(hue, saturation, lightness)'
+
+        __slots__ = ('hue', 'saturation', 'lightness')
+
+        def __init__(self, hue, saturation, lightness):
+            self.hue = hue
+            self.saturation = saturation
+            self.lightness = lightness
+
+        def __len__(self):
+            return 3
+
+        def __iter__(self):
+            yield self.hue
+            yield self.saturation
+            yield self.lightness
+
+        def __getitem__(self, index):
+            return getattr(self, self.__slots__[index])
+
+        def __setitem__(self, index, value):
+            return setattr(self, self.__slots__[index], value)
+
+        def __repr__(self):
+            return 'Color(hue=%r, saturation=%r, lightness=%r)' % (self.hue, self.saturation, self.lightness)
+
+        def __eq__(self, other):
+            return isinstance(other, self.__class__) and self.hue==other.hue and self.saturation==other.saturation and self.lightness==other.lightness
+
+    dark_orange = Color(33, 1.00, 0.50)        # http://rgb.to/darkorange
+    print(dark_orange)
+            lightness = property(itemgetter(2))
+
+Doing it with Code Generation
+-----------------------------
+
+ ::
+
+    Color = recordtype('Color', ['hue', 'saturation', 'lightness'])
+
+Putting it to Work
+------------------
+
+::
+
+    dark_orange = Color(33, 1.00, 0.50)        # http://rgb.to/darkorange
+    print(dark_orange)

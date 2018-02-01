@@ -1,0 +1,30 @@
+Recipes for Immediate Use
+=========================
+
+Bunch
+-----
+
+.. literalinclude:: code/bunch.py
+
+Namedtuple
+----------
+   
+.. literalinclude:: code/namedtuple.py
+
+Record
+------
+
+This recipe is works on Python 2.2 to 2.7.  I can easily be adapted to Python 3,
+                    
+.. literalinclude:: code/record.py
+
+
+Dataclasses
+-----------
+
+This code is current as of 6 December 2017.  It has been accepted and checked-in to the trunk for Python 3.7 but you should expect a few more tweaks before 3.7 goes final.
+                    
+.. literalinclude:: code/dataclasses.py
+
+
+                    
