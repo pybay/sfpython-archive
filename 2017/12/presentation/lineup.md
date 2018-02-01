@@ -24,5 +24,3 @@ Video: https://www.youtube.com/watch?v=4_4L7D0c3HY
 Video: https://www.youtube.com/watch?v=fkiSebzhylg
 
 Content: https://github.com/simonw/datasette, https://sf-tree-search.now.sh/, https://simonwillison.net/tags/datasette/
-## Python 3.7's New Data Classes by Raymond Hettinger
-Video: https://www.youtube.com/watch?v=lSnBvQjvqnA
