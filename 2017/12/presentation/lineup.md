@@ -20,6 +20,8 @@ Video: https://www.youtube.com/watch?v=Ud1quWeoq-0
 Content: http://slides.com/aneeshkarve/deck-2-4-9
 ## Bot Racing! by John Ellis
 Video: https://www.youtube.com/watch?v=4_4L7D0c3HY
+
+Content: https://docs.google.com/presentation/d/1cx6r7Ictw3oQ0f21FeGLsWT2xysT5XQoLkLpo83SgUw/view
 ## Datasette - publish an instant JSON API for a SQLite database by Simon Willison
 Video: https://www.youtube.com/watch?v=fkiSebzhylg
 
