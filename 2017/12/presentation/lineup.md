@@ -13,6 +13,8 @@ Content: https://www.slideshare.net/KelleyRobinson1/2fa-otp-wtf
 ## How to discover a planet using 12 lines of Python code? by Geert Barentsen
 Video: https://www.youtube.com/watch?v=3BfXx3SXiMw
 
+Presentation: https://t.co/DN1rY9MJjF
+
 Content: https://github.com/barentsen/how-to-find-a-planet/blob/master/how-to-find-a-planet.ipynb
 ## Docker but for data: Quilt is an open source Python project by Aneesh Karve
 Video: https://www.youtube.com/watch?v=Ud1quWeoq-0
@@ -24,5 +26,7 @@ Video: https://www.youtube.com/watch?v=4_4L7D0c3HY
 Content: https://docs.google.com/presentation/d/1cx6r7Ictw3oQ0f21FeGLsWT2xysT5XQoLkLpo83SgUw/view
 ## Datasette - publish an instant JSON API for a SQLite database by Simon Willison
 Video: https://www.youtube.com/watch?v=fkiSebzhylg
+
+Presentation: https://goo.gl/S3k3em
 
 Content: https://github.com/simonw/datasette, https://sf-tree-search.now.sh/, https://simonwillison.net/tags/datasette/
