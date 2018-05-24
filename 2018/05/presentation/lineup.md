@@ -4,7 +4,7 @@
 
 ### Jardin, the friendly and lightweight ORM for Python, by Emmanuel Turlay
 
-[Slides](https://github.com/pybay/sfpython-archive/2018/05/presentation/jardin_SF_Python_Meetup_050918.pdf)
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2018/05/presentation/jardin_SF_Python_Meetup_050918.pdf)
 
 Video
 
