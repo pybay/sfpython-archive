@@ -8,7 +8,7 @@
 
 ### Python + G Suite by Grant Timmerman
 
-[Slides](https://docs.google.com/presentation/d/1MIm0DUPe3Zr-o9BoZkrFrlEJEm_5h0mtLkpgL-n81RQ/edit#slide=id.g26a0bfbf55_0_0)
+[Slides](https://docs.google.com/presentation/d/1C4Fo2BcDV03CxsWAGIPtU3rxYP04s9kRzKSAo5V0j8M)
 
 [Github](https://github.com/grant/talks)
 
