@@ -30,7 +30,7 @@
 
 [website](http://www.grantjenks.com/docs/freegames/)
 
-[Github repo](https://github.com/grantjenks/free-python-games)
+[Github](https://github.com/grantjenks/free-python-games)
 
 ### How to Win Friends and Influence People - Developer Version by Tyler Suard
 
