@@ -40,4 +40,4 @@
 
 ### Python Holiday Fun: Learning from Puzzles and Games by Raymond Hettinger
 
-[Website](https://www.dropbox.com/sh/7bqhhsfot5kz9dy/AAA4nqG0DtqWUVrDYn32CO3Aa?dl=0)
+[Website](http://bayareapython.com/media/raymond-2018-holiday-party/index.html)
