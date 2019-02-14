@@ -8,6 +8,8 @@ Slides
 
 ### Dependency Management by Alex Becker
 
+[Slides]()
+
 ## Main Talk
 
 ### When Booleans are not Enough... State Machines? by Harrington Joseph
