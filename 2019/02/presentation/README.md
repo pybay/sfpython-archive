@@ -4,7 +4,7 @@
 
 ### Win Zork in One Move! by John Gilbert
 
-Slides
+[Slides and Code](https://github.com/atalkingegg/frotz)
 
 ### Dependency Management by Alex Becker
 
