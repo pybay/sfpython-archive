@@ -8,7 +8,7 @@ Slides
 
 ### Dependency Management by Alex Becker
 
-[Slides]()
+[Slides](https://alexcbecker.net/talks/package_management.html#1)
 
 ## Main Talk
 
