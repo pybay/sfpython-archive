@@ -12,4 +12,4 @@ Slides
 
 ### When Booleans are not Enough... State Machines? by Harrington Joseph
 
-Slides
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/02/presentation/harrington_joseph_state_machines.pdf)
