@@ -24,4 +24,4 @@
 
 ### Parsing a medieval heraldic DSL by Lady Red
 
-Slides
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/03/presentation/Lady_Red.pdf)
