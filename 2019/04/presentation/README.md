@@ -4,7 +4,7 @@
 
 ### How to learn Kubernetes the easy way! by Walter Lee
 
-[Slides]()
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/04/presentation/cheerful_walter_lee.pdf)
 
 ### SmartBread: Wifi-Enabled IOT Bread by Tyler Suard
 
