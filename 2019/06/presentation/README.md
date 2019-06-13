@@ -13,7 +13,7 @@
 
 ## Intro into Google Cloud Functions by Grant Timmerman
 
-[Slides]()
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/06/presentation/Grant_Timmerman.pdf)
 
 ## Main Talks
 
