@@ -4,11 +4,11 @@
 
 ### Write your first UI application with Python by Cristián Maureria
 
-[Slides]()
+[Slides](http://maureira.xyz/sfpython/#/)
 
 ### Using randomized controlled trials and AI to discover what makes a political ad persuasive by Valerie Coffman
 
-[Slides]()
+
 
 ### Make the Most of It: Negotiation and Self-Advocacy by Lusen Mendel
 
