@@ -18,4 +18,4 @@
 
 ### Python Decorators and Diversions by Richard Haven
 
-[Slides]()
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/05/presentation/Richard%20Haven%20-%20Decorators.pdf)
