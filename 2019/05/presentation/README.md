@@ -12,7 +12,7 @@
 
 ### Make the Most of It: Negotiation and Self-Advocacy by Lusen Mendel
 
-[Slides]()
+[Slides](https://github.com/pybay/sfpython-archive/blob/master/2019/05/presentation/Make%20the%20Most%20of%20it.pdf)
 
 ## Main Talks
 
